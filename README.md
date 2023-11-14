@@ -1,6 +1,7 @@
 # Sweep Events
 
-App to listen to the Mint, Burn, and Transfer events.
+Local Node app to show SWEEP events from all chains
+This app shows Mint, Burn, and Transfer events. You can modify it to show the events that are important for your marketmaking
 
 ## Set up
 
