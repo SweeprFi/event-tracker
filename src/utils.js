@@ -1,6 +1,8 @@
 const { ethers } = require('ethers');
 const { colors } = require('./config');
 
+const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 const shortAddress = (address) => {
   if (!address) return
   return `${address.slice(0, 5)} ··· ${address.slice(-5)}`
@@ -22,10 +24,21 @@ const formatArgs = (name, args) => {
   }
 }
 
-const displayLog = (network, data) => {
-  const { transactionHash, fragment, args } = data;
+const toDate = (value) => {
+  if (value === 0) return '-';
+  const date = new Date(value * 1000);
+  return month[date.getMonth()] + ' ' + date.getDate() + ', ' + zeroToNum(date.getHours()) + ':' + zeroToNum(date.getMinutes());
+}
+
+const zeroToNum = (val) => {
+  return ('00' + val).slice(-2);
+}
+
+const displayLog = async (provider, network, data) => {
+  const { transactionHash, fragment, args, blockNumber } = data;
+  block = await provider.getBlock(blockNumber);
   const name = fragment.name;
-  console.log(`${colors[network]}[${network}] - ${name}(${transactionHash}) => ${formatArgs(name, args)}${colors.def}`);
+  console.log(`${colors[network]}[${network}] [${toDate(block.timestamp)}] - ${name}(${transactionHash}) => ${formatArgs(name, args)}${colors.def}`);
 }
 
 module.exports = {

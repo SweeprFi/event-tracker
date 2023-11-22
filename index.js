@@ -15,7 +15,7 @@ async function getPastEvents(network) {
   for (const filter of filters) {
     const pastEvents = await contract.queryFilter(filter, 0, 'latest');
     pastEvents.forEach(event => {
-      displayLog(network.name, event);
+      displayLog(provider, network.name, event);
     });
   }
 }
@@ -33,7 +33,7 @@ async function subscribeToEvents(network) {
     const filter = filters[index];
     try {
       await contract.on(filter, (event, _from, _to, _value) => {
-        displayLog(network.name, event.log);
+        displayLog(provider, network.name, event.log);
       });
 
       console.log(`[${network.name}] Listen event ${eventsToTrack[index]}...`);
