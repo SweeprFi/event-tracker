@@ -45,7 +45,7 @@ async function subscribeToEvents(network) {
 
 async function events() {
   await Promise.all(supportedNetworks.map(async (network) => {
-    await getPastEvents(network);
+    // await getPastEvents(network);
     await subscribeToEvents(network);
   }))
 }
