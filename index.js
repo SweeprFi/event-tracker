@@ -10,10 +10,11 @@ async function getPastEvents(network) {
   const provider = new ethers.WebSocketProvider(network.url);
   const contract = new ethers.Contract(sweepAddress, sweepABI, provider);
 
+  const cbn = await provider.getBlockNumber();
   const filters = eventsToTrack.map(eventName => contract.filters[eventName]());
 
   for (const filter of filters) {
-    const pastEvents = await contract.queryFilter(filter, 0, 'latest');
+    const pastEvents = await contract.queryFilter(filter, cbn-40000, 'latest');
     pastEvents.forEach(event => {
       displayLog(provider, network.name, event);
     });
