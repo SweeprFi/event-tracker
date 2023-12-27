@@ -21,6 +21,10 @@ const supportedNetworks = [
     name: 'avalanche',
     url: "wss://avalanche-c-chain.publicnode.com"
   },
+  {
+    name: 'polygon',
+    url: `wss://polygon-mainnet.g.alchemy.com/v2/${process.env.POLYGON_KEY}`
+  },
 ];
 
 const colors = {
@@ -29,6 +33,7 @@ const colors = {
   optimism: '\x1b[35m',
   base: '\x1b[36m',
   avalanche: '\x1b[31m',
+  polygon: '\x1b[37m',
   def: '\x1b[0m'
 }
 
