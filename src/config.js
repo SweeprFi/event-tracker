@@ -25,6 +25,10 @@ const supportedNetworks = [
     name: 'polygon',
     url: `wss://polygon-mainnet.g.alchemy.com/v2/${process.env.POLYGON_KEY}`
   },
+  {
+    name: 'bsc',
+    url: `wss://bsc-mainnet.core.chainstack.com/ws/${process.env.BSC_KEY}`
+  },
 ];
 
 const colors = {
@@ -34,6 +38,7 @@ const colors = {
   base: '\x1b[36m',
   avalanche: '\x1b[31m',
   polygon: '\x1b[37m',
+  bsc: '\x1b[34m',
   def: '\x1b[0m'
 }
 
@@ -41,3 +46,5 @@ module.exports = {
   colors,
   supportedNetworks
 }
+
+
